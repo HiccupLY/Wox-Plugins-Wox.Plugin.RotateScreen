@@ -1,0 +1,12 @@
+﻿{
+    "ID": "ba3b95e2190311e793ae92361f002671", //Plugin ID，32 bit UUID        
+    "ActionKeyword": "SelectWifi", //Plugin default action keyword
+    "Name": "SelectWifi", //Plugin name
+    "Description": "SelectYourConnectingWifi", //Plugin description
+    "Author": "Alex Liu", //Plugin Author
+    "Version": "1.0.0", //Plugin version，must be x.x.x format
+    "Language": "csharp", //Plugin language，we support csharp,python and executable now
+    "Website": "http://www.getwox.com", //Plugin website or author website
+    "IcoPath": "Images\\app.png", //Plugin icon, relative path to the pluign folder
+    "ExecuteFileName": "Wox.Plugin.SelectWifi.dll" //Execution entry. Dll name for c# plugin, and python file for python plugin
+}

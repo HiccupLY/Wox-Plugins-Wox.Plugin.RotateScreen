@@ -1,0 +1,12 @@
+﻿{
+  "ID": "26214cb3f4a34040a05ae05dd4b0f5f7", //Plugin ID，32 bit UUID
+  "ActionKeyword": "RotateScreen", //Plugin default action keyword
+  "Name": "ScreenRotation", //Plugin name
+  "Description": "RotateSelectedScreen", //Plugin description
+  "Author": "Alex Liu", //Plugin Author
+  "Version": "1.0.0", //Plugin version，must be x.x.x format
+  "Language": "csharp", //Plugin language，we support csharp,python and executable now
+  "Website": "http://www.getwox.com", //Plugin website or author website
+  "IcoPath": "Images\\app.png", //Plugin icon, relative path to the pluign folder
+  "ExecuteFileName": "Wox.Plugin.ScreenRotation.dll" //Execution entry. Dll name for c# plugin, and python file for python plugin
+}
