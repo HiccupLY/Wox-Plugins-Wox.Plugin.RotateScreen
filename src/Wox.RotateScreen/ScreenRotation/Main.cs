@@ -11,10 +11,8 @@ namespace ScreenRotation
 {
     public class Main :IPlugin
     {
-        //Dictionary<, Screen> screenDict = new Dictionary<int, Screen>();
-        private Dictionary<string, MyDisplay.Orientations> rotationDict;
-
-        public Dictionary<string, MyDisplay.Orientations> RotationDict { get => rotationDict; set => rotationDict = value; }
+        
+        public Dictionary<string, MyDisplay.Orientations> RotationDict { get; set; }
 
         public List<Result> Query(Query query)
         {
@@ -31,7 +29,7 @@ namespace ScreenRotation
                 {
                     deviceIndex = Convert.ToInt32(query.FirstSearch);
                 }
-                catch (Exception ex)
+                catch 
                 {
                     deviceIndex = 0;
                 }

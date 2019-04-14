@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using WindowsDisplayAPI;
@@ -84,7 +85,7 @@ namespace ScreenRotation
             {
                 return displays.First(e => e.DisplayName == d.DeviceName);
             }
-            catch (Exception ex)
+            catch 
             {
                 return null;
             }
@@ -103,6 +104,7 @@ namespace ScreenRotation
             }
             catch (ArgumentOutOfRangeException ex)
             {
+                Trace.Write(ex.Message);
                 // Everything is fine, just reached the last display
             }
         }

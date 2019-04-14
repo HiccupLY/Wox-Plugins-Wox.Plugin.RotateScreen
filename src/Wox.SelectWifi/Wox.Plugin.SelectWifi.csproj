@@ -62,9 +62,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Image\small.png" />
-    <Content Include="Image\medium.png" />
-    <Content Include="Image\big.png" />
+    <Content Include="Images\big.png" />
+    <Content Include="Images\medium.png" />
+    <Content Include="Images\small.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
