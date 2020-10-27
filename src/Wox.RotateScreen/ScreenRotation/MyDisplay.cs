@@ -22,15 +22,18 @@ namespace ScreenRotation
                 throw new ArgumentOutOfRangeException("DisplayNumber", DisplayNumber, "First display is 1.");
 
             bool result = false;
-            DISPLAY_DEVICE d = new DISPLAY_DEVICE();
+//            DISPLAY_DEVICE d = new DISPLAY_DEVICE();
             DEVMODE dm = new DEVMODE();
-            d.cb = Marshal.SizeOf(d);
+//            d.cb = Marshal.SizeOf(d);
 
-            if (!NativeMethods.EnumDisplayDevices(null, DisplayNumber - 1, ref d, 0))
-                throw new ArgumentOutOfRangeException("DisplayNumber", DisplayNumber, "Number is greater than connected displays.");
+//            if (!NativeMethods.EnumDisplayDevices(null, DisplayNumber - 1, ref d, 0))
+//                throw new ArgumentOutOfRangeException("DisplayNumber", DisplayNumber, "Number is greater than connected displays.");
+
+            var displays = Display.GetDisplays().ToArray();
+            var display = displays[DisplayNumber - 1];
 
             if (0 != NativeMethods.EnumDisplaySettings(
-                    d.DeviceName, NativeMethods.ENUM_CURRENT_SETTINGS, ref dm))
+                    display.DisplayName, NativeMethods.ENUM_CURRENT_SETTINGS, ref dm))
             {
                 if ((dm.dmDisplayOrientation + (int)Orientation) % 2 == 1) // Need to swap height and width?
                 {
@@ -58,7 +61,7 @@ namespace ScreenRotation
                 }
 
                 DISP_CHANGE ret = NativeMethods.ChangeDisplaySettingsEx(
-                    d.DeviceName, ref dm, IntPtr.Zero,
+                    display.DisplayName, ref dm, IntPtr.Zero,
                     DisplaySettingsFlags.CDS_UPDATEREGISTRY, IntPtr.Zero);
 
                 result = ret == 0;
@@ -83,7 +86,8 @@ namespace ScreenRotation
 
             try
             {
-                return displays.First(e => e.DisplayName == d.DeviceName);
+               // return displays.First(e => e.DisplayName == d.DeviceName);
+                return displays[DisplayNumber - 1];
             }
             catch 
             {
@@ -94,10 +98,12 @@ namespace ScreenRotation
 
         public static void ResetAllRotations()
         {
+            var displays_len = Display.GetDisplays().ToArray().Length;
+
             try
             {
                 uint i = 0;
-                while (++i <= 64)
+                while (++i <= displays_len)
                 {
                     Rotate(i, Orientations.DEGREES_CW_0);
                 }

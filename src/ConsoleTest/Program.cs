@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 using NativeWifi;
 using ScreenRotation;
 using Wox.Plugin;
@@ -78,42 +79,42 @@ namespace ConsoleTest
 
         static void Main(string[] args)
         {
-            foreach (WlanClient.WlanInterface wlanIface in client.Interfaces)
-            {
-                // Lists all networks with WEP security
-                Wlan.WlanAvailableNetwork[] networks = wlanIface.GetAvailableNetworkList(0);
-                List<Wlan.WlanAvailableNetwork> availabelNetworks = new List<Wlan.WlanAvailableNetwork>();
-
-                foreach (Wlan.WlanAvailableNetwork network in networks)
-                {
-                    if(network.networkConnectable == true && network.wlanSignalQuality >= 30) 
-                    {
-                        Console.WriteLine("Found network with SSID {0} with SingalVolume {1}.", GetStringForSSID(network.dot11Ssid),network.wlanSignalQuality);
-                        availabelNetworks.Add(network);
-                    }
-                }
-                availabelNetworks.Sort(
-                    (x, y) =>
-                    {
-                        int value = y.wlanSignalQuality.CompareTo(x.wlanSignalQuality);
-                        return value;
-                });
-                Console.WriteLine("=======================");
-                       
-                foreach (var network in availabelNetworks)
-                {
-                    Console.WriteLine("Found network with SSID {0} with SingalVolume {1}.", GetStringForSSID(network.dot11Ssid), network.wlanSignalQuality);
-                    
-                    if(GetStringForSSID(network.dot11Ssid) == "BUAA-WiFi")
-                    {
-                        //SelectCurrentWifi(network,wlanIface);
-                    }
-                }
-
-
-
-                Console.WriteLine(wlanIface.CurrentConnection.profileName);
-            }
+            //            foreach (WlanClient.WlanInterface wlanIface in client.Interfaces)
+            //            {
+            //                // Lists all networks with WEP security
+            //                Wlan.WlanAvailableNetwork[] networks = wlanIface.GetAvailableNetworkList(0);
+            //                List<Wlan.WlanAvailableNetwork> availabelNetworks = new List<Wlan.WlanAvailableNetwork>();
+            //
+            //                foreach (Wlan.WlanAvailableNetwork network in networks)
+            //                {
+            //                    if(network.networkConnectable == true && network.wlanSignalQuality >= 30) 
+            //                    {
+            //                        Console.WriteLine("Found network with SSID {0} with SingalVolume {1}.", GetStringForSSID(network.dot11Ssid),network.wlanSignalQuality);
+            //                        availabelNetworks.Add(network);
+            //                    }
+            //                }
+            //                availabelNetworks.Sort(
+            //                    (x, y) =>
+            //                    {
+            //                        int value = y.wlanSignalQuality.CompareTo(x.wlanSignalQuality);
+            //                        return value;
+            //                });
+            //                Console.WriteLine("=======================");
+            //                       
+            //                foreach (var network in availabelNetworks)
+            //                {
+            //                    Console.WriteLine("Found network with SSID {0} with SingalVolume {1}.", GetStringForSSID(network.dot11Ssid), network.wlanSignalQuality);
+            //                    
+            //                    if(GetStringForSSID(network.dot11Ssid) == "BUAA-WiFi")
+            //                    {
+            //                        //SelectCurrentWifi(network,wlanIface);
+            //                    }
+            //                }
+            //
+            //
+            //
+            //                Console.WriteLine(wlanIface.CurrentConnection.profileName);
+            //            }
 
             var d1 = MyDisplay.GetDisplay(1);
             Console.WriteLine(d1);
@@ -121,29 +122,24 @@ namespace ConsoleTest
             Console.WriteLine(d2);
 
             ScreenRotation.Main tmp = new Main();
+            tmp.Init(null);
             var items = tmp.Query(new Query()
             {
                 ActionKeyword = "RS",
                 Terms = new string[]{"RS","2","u"}
             });
-
             
-
-//
-//            string strSHow = string.Empty;
-//            foreach (var v in Screen.AllScreens)
-//            {
-//                strSHow += v.ToString() + "\r\n";
-//            }
-//            
-//            
-//            
-//            MyDisplay.Rotate(2, MyDisplay.Orientations.DEGREES_CW_180);
-//
-////            Console.WriteLine(strSHow);
+            string strSHow = string.Empty;
+            foreach (var v in Screen.AllScreens)
+            {
+                strSHow += v.ToString() + "\r\n";
+            }
+            
+            MyDisplay.Rotate(2, MyDisplay.Orientations.DEGREES_CW_180);
+            Console.WriteLine(strSHow);
             Console.ReadLine();
-//            
-//            MyDisplay.Rotate(2, MyDisplay.Orientations.DEGREES_CW_270);
+            
+            MyDisplay.Rotate(2, MyDisplay.Orientations.DEGREES_CW_270);
 
         }
         
