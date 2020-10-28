@@ -139,7 +139,7 @@ namespace ConsoleTest
             Console.WriteLine(strSHow);
             Console.ReadLine();
             
-            MyDisplay.Rotate(2, MyDisplay.Orientations.DEGREES_CW_270);
+            MyDisplay.Rotate(2, MyDisplay.Orientations.DEGREES_CW_0);
 
         }
         
