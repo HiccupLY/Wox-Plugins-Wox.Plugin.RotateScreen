@@ -48,8 +48,9 @@ this plugin could save a lot of time for setting rotation panel.
 Then everything goes fine.
 
 ## By Code Compiling
-You can just build this project and get the dll file.
-Finish the following part according to http://doc.wox.one/
+You can just build this project to get files or get them from .zip downloaded by release.
+Then, finish the following part according to http://doc.wox.one/ .
+Detailed steps are listed as follows.
 
 First, compile the solution.
 
